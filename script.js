@@ -273,29 +273,5 @@ document.addEventListener("DOMContentLoaded", function () {
   detectSlides();
 
   // Start autoplay initially
-  // startAutoPlay();
-
-  function applyEllipsis() {
-    const element = document.querySelector(".text2");
-
-    if (!element) return; // Prevent errors if the element is missing
-
-    const lineHeight = parseFloat(getComputedStyle(element).lineHeight);
-    const maxHeight = lineHeight * 2; // Maximum allowed height for 2 lines
-
-    console.log("Scroll Height:", element.scrollHeight);
-    console.log("Max Height:", maxHeight);
-
-    // Check if text will exceed two lines (before it fully overflows into 3rd line)
-    if (element.scrollHeight <= maxHeight - lineHeight / 2) {
-      console.log("Applying ellipsis...");
-      let text = element.innerText;
-
-      while (element.scrollHeight > maxHeight && text.length > 0) {
-        text = text.slice(0, -1); // Remove last character
-        element.innerText = text + "..."; // Append ellipsis
-      }
-    }
-  }
-  // applyEllipsis();
+  startAutoPlay();
 });

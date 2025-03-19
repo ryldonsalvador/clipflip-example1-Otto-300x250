@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const slider = document.querySelector(".slider");
   const prev = document.getElementById("btn-left-click");
   const next = document.getElementById("btn-right-click");
+  const bannerClick = document.getElementById("banner-click");
   let index = 1;
   let autoPlayInterval;
 
@@ -14,79 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
   slider.insertBefore(clone, slider.firstElementChild);
   slider.removeChild(lastSlide);
 
-  // JSON STARTS HERE
+  // Slide Data with URLs
+  const slideUrls = [
+    "https://www.otto.de/p/hp-17-cn3264ng-notebook-43-9-cm-17-3-zoll-intel-core-i5-1334u-iris-xe-graphics-512-gb-ssd-1856253226/#variationId=1856253227", // Slide 1
+    "https://www.otto.de/p/philips-tah4209-on-ear-kopfhoerer-geraeuschisolierung-multi-point-verbindung-sprachsteuerung-integrierte-steuerung-fuer-anrufe-und-musik-google-assistant-siri-a2dp-bluetooth-avrcp-bluetooth-bluetooth-hfp-C1856064961/#variationId=1856064987", // Slide 2
+    "https://www.otto.de/p/apple-airpods-pro-2-gen-2023-mit-magsafe-case-usb-c-in-ear-kopfhoerer-active-noise-cancelling-anc-freisprechfunktion-transparenzmodus-kompatibel-mit-siri-siri-bluetooth-1787262198/#variationId=1787262199", // Slide 3
+    "https://www.otto.de/p/samsung-galaxy-s25-ultra-smartphone-17-42-cm-6-9-zoll-256-gb-speicherplatz-200-mp-kamera-1939144503/#variationId=1939144421", // Slide 4
+  ];
 
-  // fetch("ad-config.json?v=" + new Date().getTime()) // Prevent caching
-  //   .then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-  //     return response.json();
-  //   })
-  //   .then((data) => {
-  //     showFetchSuccess(); // Call function when fetch is successful
-  //     // Set ClickTag
-  //     window.clickTag = data.clickTag;
-
-  //     // Update all clickable elements
-  //     document.querySelectorAll(".cta-button a, .logo a").forEach((link) => {
-  //       link.href = data.clickTag;
-  //       link.target = "_blank"; // Open in new tab
-  //       link.rel = "noopener noreferrer"; // Security best practice
-  //     });
-
-  //     // Populate Videos
-  //     data.videos.forEach((video, index) => {
-  //       let videoElement = document.getElementById(`video-${index + 1}`);
-  //       if (videoElement) {
-  //         videoElement.poster = video.poster;
-  //         videoElement.querySelector("source").src = video.src;
-  //         videoElement.load(); // Reload video source
-  //       }
-  //     });
-
-  //     // Populate Slides (Text & Prices)
-  //     data.slides.forEach((slide, index) => {
-  //       let slideContainer = document.querySelector(
-  //         `.slide${index + 1}-content`
-  //       );
-  //       if (slideContainer) {
-  //         slideContainer.innerHTML = `
-  //         <div class="text1">${slide.brand}</div>
-  //         <div class="text2">${slide.title}</div>
-  //         <div class="text3">${slide.price} <span>${slide.tax}</span></div>
-  //         ${
-  //           slide.originalPrice
-  //             ? `<div class="text4">Originalpreis: <span class="price-orig">${slide.originalPrice}</span> <span class="price-discount">${slide.discount}</span></div>`
-  //             : ""
-  //         }
-  //       `;
-  //       }
-  //     });
-
-  //     // Set Logo
-  //     let logoAnchor = document.querySelector(".logo a");
-  //     let logoImg = document.querySelector(".logo img");
-  //     if (logoAnchor && logoImg) {
-  //       logoAnchor.href = data.logo.href;
-  //       logoImg.src = data.logo.src;
-  //     }
-
-  //     // Set CTA Button
-  //     let ctaButton = document.querySelector(".cta-button a");
-  //     if (ctaButton) {
-  //       ctaButton.href = data.ctaButton.href;
-  //       ctaButton.innerHTML = `${data.ctaButton.text} <img src="${data.ctaButton.icon}" />`;
-  //     }
-  //   })
-  //   .catch((error) => console.error("Error loading JSON:", error));
-
-  ///// JSON ENDS HERE
-
-  function showFetchSuccess() {
-    main.style.display = "block";
-  }
   main.style.display = "block";
+
   function updateSlides() {
     const slides = document.querySelectorAll(".slide");
     slides.forEach((slide, i) => {
@@ -113,10 +51,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function disableControls() {
     prev.style.pointerEvents = "none";
     next.style.pointerEvents = "none";
+    bannerClick.style.pointerEvents = "none";
   }
   function enableControls() {
     prev.style.pointerEvents = "auto";
     next.style.pointerEvents = "auto";
+    bannerClick.style.pointerEvents = "auto";
   }
 
   function detectSlides() {
@@ -131,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       contents[activeSlide.dataset.slide - 1].classList.add("visible");
       setTimeout(() => {
         enableControls();
+        updateButtonUrl();
       }, 500);
     }
 
@@ -160,8 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       document.querySelectorAll(".lazy-video").forEach((video) => {
         if (video.closest(".active")) {
-          // console.log("video play");
-
+          console.log("video play");
           if (!video.src) {
             video.src = video.dataset.src;
           }
@@ -170,10 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
           video.currentTime = 0;
         }
       });
-
       // console.log("Active slide:", document.querySelector(".active"));
     }, 100); // Small delay to allow class changes
   }
+
   function moveSlide(direction) {
     const slides = document.querySelectorAll(".slide");
     const activeIndex = [...slides].findIndex((slide) =>
@@ -181,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     pauseAllVideos();
-
     disableControls();
 
     let nextActiveIndex;
@@ -274,4 +213,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Start autoplay initially
   startAutoPlay();
+
+  // Function to update the CTA button URL dynamically
+  function updateButtonUrl() {
+    const activeSlide = document.querySelector(".slide.active");
+    if (activeSlide) {
+      const slideIndex = parseInt(activeSlide.dataset.slide) - 1; // Get active slide index
+      if (slideUrls[slideIndex]) {
+        bannerClick.href = slideUrls[slideIndex]; // Dynamically update URL
+      }
+    }
+  }
+
+  document
+    .querySelector(".banner-click")
+    .addEventListener("mouseenter", function () {
+      document.querySelector(".cta-button img").style.transform =
+        "translateX(3px)";
+    });
+
+  document
+    .querySelector(".banner-click")
+    .addEventListener("mouseleave", function () {
+      document.querySelector(".cta-button img").style.transform =
+        "translateX(0px)";
+    });
 });

@@ -16,22 +16,46 @@
       <div class="slider-container">
         <div class="slider">
           <div class="slide slide-1" data-slide="1">
-            <video id="video-1" muted playsinline loop poster="">
+            <video
+              id="video-1"
+              muted
+              playsinline
+              loop
+              poster="./img/thumbnail_dell.png"
+            >
               <source src="./videos/Dell.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="slide slide-2" data-slide="2">
-            <video id="video-2" muted playsinline loop poster="">
+            <video
+              id="video-2"
+              muted
+              playsinline
+              loop
+              poster="./img/thumbnail_philips.png"
+            >
               <source src="./videos/Philips.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="slide slide-3" data-slide="3">
-            <video id="video-3" muted playsinline loop poster="">
+            <video
+              id="video-3"
+              muted
+              playsinline
+              loop
+              poster="./img/thumbnail_apple.png"
+            >
               <source src="./videos/Apple.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="slide slide-4" data-slide="4">
-            <video id="video-4" muted playsinline loop poster="">
+            <video
+              id="video-4"
+              muted
+              playsinline
+              loop
+              poster="./img/thumbnail_samsung.png"
+            >
               <source src="./videos/Samsung.mp4" type="video/mp4" />
             </video>
           </div>
@@ -57,12 +81,6 @@
           <div class="text3">
             31,37€ <span>inkl. MwSt. zzgl. Versandkosten</span>
           </div>
-          <!-- <div class="text4">
-            Originalpreis:&nbsp<span class="price-orig">€400,00</span>&nbsp<span
-              class="price-discount"
-              >-20%</span
-            >
-          </div> -->
         </div>
         <div class="slide3-content slides-content">
           <div class="text1">APPLE</div>
@@ -72,53 +90,32 @@
           <div class="text3">
             233,00€ <span>inkl. MwSt. zzgl. Versandkosten</span>
           </div>
-          <!-- <div class="text4">
-            Originalpreis:&nbsp<span class="price-orig">€174,95</span>&nbsp<span
-              class="price-discount"
-              >-45%</span
-            >
-          </div> -->
         </div>
         <div class="slide4-content slides-content">
           <div class="text1">SAMSUNG</div>
-          <div class="text2">
-            Galaxy S25 Ultra SmartphoneGalaxy S25 Ultra SmartphoneGalaxy S25
-            Ultra Smartphone
-          </div>
+          <div class="text2">Galaxy S25 Ultra Smartphone</div>
           <div class="text3">
             1.569,00€ <span>inkl. MwSt. zzgl. Versandkosten</span>
           </div>
-          <!-- <div class="text4">
-            Originalpreis:&nbsp<span class="price-orig">€229,95</span>&nbsp<span
-              class="price-discount"
-              >-10%</span
-            >
-          </div> -->
-        </div>
-      </div>
-      <div class="controls">
-        <div class="pad" id="btn-left-click">
-          <button id="prev">❮</button>
-        </div>
-        <div class="pad" id="btn-right-click">
-          <button id="next">❯</button>
         </div>
       </div>
       <div class="logo">
-        <a href="javascript:window.open(window.clickTag);void(0)">
-          <img src="./img/Otto_Logo.png" />
-        </a>
+        <img src="./img/Otto_Logo.png" />
       </div>
       <div class="cta-button">
-        <a href="javascript:window.open(window.clickTag);void(0)">
-          Jetzt entdecken <img src="./img/arrow.svg" />
-        </a>
+        Jetzt entdecken <img src="./img/arrow.svg" />
+      </div>
+      <a id="banner-click" class="banner-click" target="_blank"></a>
+      <div class="pad" id="btn-left-click">
+        <button id="prev">❮</button>
+      </div>
+      <div class="pad" id="btn-right-click">
+        <button id="next">❯</button>
       </div>
     </div>
-
-    <script src="script.js"></script>
     <script type="text/javascript">
       var clickTag = "https://www.google.com";
     </script>
+    <script src="script.js"></script>
   </body>
 </html>
